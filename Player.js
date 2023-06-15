@@ -1,6 +1,9 @@
 
-export const initVideoPlayer = (id, urlMarkets='') => {
+export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => {
+    
+    createVideo({src: 'http://vjs.zencdn.net/v/oceans.webm', width,height, id})
 
+    
     console.log('init Player')
     const player = videojs(id);
     let markers  = []
@@ -169,11 +172,91 @@ export const initVideoPlayer = (id, urlMarkets='') => {
         
     })
 
+    
     return player
 }
 
 
+export const createVideo = ({width, height, src, id}) => {
 
+    const divConteiner = document.createElement('div')
+    divConteiner.classList.add('container-md')
+    divConteiner.classList.add('mt-1')
+
+    const video = document.createElement('video');
+    video.id = id;
+    video.controls = true;
+    video.className = 'video-js vjs-default-skin';
+    video.autoplay = true;
+    video.loop = true;
+    video.width = width;
+    video.height = height;
+  
+    // Crear las fuentes de video
+   /* const sourceMP4 = document.createElement('source');
+    sourceMP4.src = 'http://vjs.zencdn.net/v/oceans.mp4';
+    sourceMP4.type = 'video/mp4';*/
+  
+    const sourceWebM = document.createElement('source');
+    sourceWebM.src = src;
+    sourceWebM.type = 'video/webm';
+  
+    // Agregar las fuentes de video al elemento de video
+    //video.appendChild(sourceMP4);
+    video.appendChild(sourceWebM);
+  
+    // Crear el contenedor para la entrada de texto y botones
+    const contenedor = document.createElement('div');
+    contenedor.className = 'contenedor';
+  
+    // Crear el grupo de entrada de texto
+    const inputGroup = document.createElement('div');
+    inputGroup.className = 'input-group mb-3 mt-2';
+  
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'form-control';
+    input.placeholder = 'Escribe una pequeña nota';
+    input.setAttribute('aria-label', "Recipient's username");
+    input.setAttribute('aria-describedby', 'basic-addon2');
+  
+    inputGroup.appendChild(input);
+  
+    // Crear el contenedor para los botones
+    const alignBtn = document.createElement('div');
+    alignBtn.className = 'align-btn';
+  
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.className = 'btn btn-outline-secondary';
+    cancelBtn.textContent = 'Cancelar';
+  
+    const saveBtn = document.createElement('button');
+    saveBtn.type = 'button';
+    saveBtn.className = 'btn btn-dark';
+    saveBtn.id = 'save';
+    saveBtn.textContent = 'Guardar';
+  
+    alignBtn.appendChild(cancelBtn);
+    alignBtn.appendChild(saveBtn);
+  
+    // Agregar el elemento de video y los contenedores al contenedor principal
+    divConteiner.appendChild(video);
+    contenedor.appendChild(inputGroup);
+    contenedor.appendChild(alignBtn);
+    divConteiner.appendChild(contenedor);
+
+    document.body.appendChild(divConteiner)
+  
+    // Lógica adicional o manipulación de eventos se puede agregar aquí
+  
+    // Evento click para el botón "Guardar"
+    saveBtn.addEventListener('click', function() {
+      const note = input.value;
+      // Lógica para guardar la nota...
+      console.log('Nota guardada:', note);
+    });
+}
 
 
 export const getCurrentTime = (player) => {
@@ -181,6 +264,9 @@ export const getCurrentTime = (player) => {
     return player.currentTime()
 }
 
+
+
+  
 
 
 
