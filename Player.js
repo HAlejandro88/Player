@@ -131,10 +131,8 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     document.addEventListener('keydown', event => {
         if (event.key === 'k' || event.key === 'K') {
             if (player.paused()) {
-                console.log('que paso play');
                 player.play();
             } else {
-                console.log('que paso pausa');
                 player.pause();
             }
         }
