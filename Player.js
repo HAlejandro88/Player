@@ -129,13 +129,13 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     })
 
     document.addEventListener('keydown', event => {
-        if(event.key === 'k' || event.key === 'K') {
-            if(player.play()) {
+        if (event.key === 'k' || event.key === 'K') {
+            if (player.paused()) {
                 console.log('que paso play');
-                player.pause()
+                player.play();
             } else {
                 console.log('que paso pausa');
-                player.play()
+                player.pause();
             }
         }
 
@@ -168,8 +168,6 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
             
             player.volume(player.volume() - 0.1);
         }
-
-        
     })
 
     
@@ -252,9 +250,9 @@ export const createVideo = ({width, height, src, id}) => {
   
     // Evento click para el botón "Guardar"
     saveBtn.addEventListener('click', function() {
-      const note = input.value;
+        const note = input.value;
       // Lógica para guardar la nota...
-      console.log('Nota guardada:', note);
+        console.log('Nota guardada:', note);
     });
 }
 
