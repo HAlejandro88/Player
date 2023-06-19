@@ -172,7 +172,6 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     return player
 }
 
-
 export const createVideo = ({width, height, src, id}) => {
 
     const divConteiner = document.createElement('div')
@@ -259,23 +258,3 @@ export const getCurrentTime = (player) => {
     //console.log(player.currentTime());
     return player.currentTime()
 }
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
