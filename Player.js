@@ -76,6 +76,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
 
     const bookmark = document.querySelector('.bookmark');
     bookmark.textContent = 'bookmark'
+    bookmark.style.marginTop = '3.3px'
     bookmark.addEventListener('click', event => {
         event.preventDefault()
         player.pause()
@@ -120,6 +121,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     const replayTen = document.querySelector('#replay-ten');
 
     replayTen.textContent = 'replay_10'
+    replayTen.style.marginTop = '3.3px'
 
     
 
@@ -130,6 +132,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
 
     const forwardTen = document.querySelector('#forward-ten');
     forwardTen.textContent = 'forward_10'
+    forwardTen.style.marginTop = '3.3px'
 
     forwardTen.addEventListener('click', event => {
         let currentTime = player.currentTime();
@@ -161,10 +164,10 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
         }
 
         if (event.key === 'ArrowRight') {
-            player.playbackRate(player.playbackRate() + 0.25);
+            player.playbackRate(player.playbackRate() + 0.50);
         } else if (event.key === 'ArrowLeft') {
             
-            player.playbackRate(player.playbackRate() - 0.25);
+            player.playbackRate(player.playbackRate() - 0.50);
         }
 
         if (event.key === 'ArrowUp') {
