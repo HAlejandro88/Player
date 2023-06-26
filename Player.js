@@ -5,8 +5,15 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
 
     
     console.log('init Player')
-    const player = videojs(id);
+    const player = videojs(id,{
+        playbackRates: [0.50, 1, 1.50, 2, 2.50, 3, 3.50, 4, 4.50, 5, 5.50, 6, 6.50, 7, 7.50, 8]
+    });
     let markers  = []
+
+    //player.playbackRateMenuButton();
+
+    // Definir las velocidades de reproducción
+    //
 
     player.controlBar.addChild('button', {
         text: '',
@@ -51,6 +58,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
         },
         markers
     });
+
 
     window.addEventListener('load',async() => {
         try {
