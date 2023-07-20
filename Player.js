@@ -1,5 +1,5 @@
 
-export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => {
+export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => {
     
     createVideo({src: 'http://vjs.zencdn.net/v/oceans.webm', width,height, id})
 
@@ -11,11 +11,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     });
     let markers  = []
 
-    //player.playbackRateMenuButton();
-
-    // Definir las velocidades de reproducción
-    //
-
+    
     player.controlBar.addChild('button', {
         text: '',
         el: videojs.dom.createEl('span', {className: 'material-icons btn-controls', id: 'replay-ten'})
@@ -30,6 +26,13 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
         text: '',
         el: videojs.dom.createEl('i', {className: 'material-icons btn-controls bookmark'})
     });
+
+    player.controlBar.addChild('button', {
+        text: '',
+        el: videojs.dom.createEl('span', {className: 'material-icons', id: 'help'})
+    });
+
+
 
     player.markers({
         markerStyle: {
@@ -78,6 +81,8 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     const bookmark = document.querySelector('.bookmark');
     bookmark.textContent = 'bookmark'
     bookmark.style.marginTop = '3.3px'
+    bookmark.style.cursor = 'pointer'
+
     bookmark.addEventListener('click', event => {
         event.preventDefault()
         player.pause()
@@ -123,6 +128,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
 
     replayTen.textContent = 'replay_10'
     replayTen.style.marginTop = '3.3px'
+    replayTen.style.cursor = 'pointer'
 
     
 
@@ -134,11 +140,27 @@ export const initVideoPlayer = (id, urlMarkets='', width = 700,height = 400) => 
     const forwardTen = document.querySelector('#forward-ten');
     forwardTen.textContent = 'forward_10'
     forwardTen.style.marginTop = '3.3px'
+    forwardTen.style.cursor = 'pointer'
 
     forwardTen.addEventListener('click', event => {
         let currentTime = player.currentTime();
         player.currentTime(currentTime + 10);
     })
+
+    const help = document.querySelector('#help')
+    help.textContent = 'help'
+    help.style.marginTop = '2.3px'
+    help.style.cursor = 'pointer'
+
+    help.addEventListener('click', event => {
+
+    })
+
+    const createTooltip = (element) => {
+        const span = document.createElement('span')
+        
+    }
+
 
     document.addEventListener('keydown', event => {
         if (event.key === 'k' || event.key === 'K') {
