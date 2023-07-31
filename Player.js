@@ -3,6 +3,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
     
     createVideo({src: 'http://vjs.zencdn.net/v/oceans.webm', width,height, id})
 
+
     
     console.log('init Player')
     const player = videojs(id,{
@@ -74,6 +75,9 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
         }
     })
 
+    const rate = document.querySelector('.vjs-play-control.vjs-playing')
+    createTooltip('rate', rate)
+
     const inputs = document.querySelector('.contenedor')
     const save = document.querySelector('#save')
     const input = document.querySelector('input')
@@ -82,6 +86,8 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
     bookmark.textContent = 'bookmark'
     bookmark.style.marginTop = '3.3px'
     bookmark.style.cursor = 'pointer'
+
+    createTooltip('bookmark', bookmark)
 
     bookmark.addEventListener('click', event => {
         event.preventDefault()
@@ -130,7 +136,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
     replayTen.style.marginTop = '3.3px'
     replayTen.style.cursor = 'pointer'
 
-    
+    createTooltip('replayTen', replayTen)
 
     replayTen.addEventListener('click', event => {
         let currentTime = player.currentTime();
@@ -141,6 +147,8 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
     forwardTen.textContent = 'forward_10'
     forwardTen.style.marginTop = '3.3px'
     forwardTen.style.cursor = 'pointer'
+
+    createTooltip('forwardTen', forwardTen)
 
     forwardTen.addEventListener('click', event => {
         let currentTime = player.currentTime();
@@ -156,10 +164,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
 
     })
 
-    const createTooltip = (element) => {
-        const span = document.createElement('span')
-        
-    }
+
 
 
     document.addEventListener('keydown', event => {
@@ -292,3 +297,37 @@ export const getCurrentTime = (player) => {
     //console.log(player.currentTime());
     return player.currentTime()
 }
+
+
+
+const createTooltip = (text = 'hola tooltip', element) => {
+    //const help = document.querySelector('#help')
+    const tooltip = document.createElement('div');
+    tooltip.style.position = 'absolute';
+    tooltip.style.backgroundColor = '#333'
+    tooltip.style.color = '#fff'
+    tooltip.style.padding = '5px'
+    tooltip.style.borderRadius = '4px'
+    tooltip.style.display = 'none'
+    tooltip.textContent = text
+
+
+    element.addEventListener('mouseenter', () => {
+        tooltip.style.display = 'block';
+    });
+
+// Evento al salir del elemento objetivo (ocultar tooltip)
+    element.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+    });
+
+    element.addEventListener('mousemove', (event) => {
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${event.clientX + 10}px`; // Ajusta la posición horizontal del tooltip
+        tooltip.style.top = `${event.clientY + 10}px`; // Ajusta la posición vertical del tooltip
+    });
+
+    document.body.appendChild(tooltip)
+    
+}
+
