@@ -75,8 +75,7 @@ export const initVideoPlayer = (id, urlMarkets='', width = 730,height = 400) => 
         }
     })
 
-    const rate = document.querySelector('.vjs-play-control.vjs-playing')
-    createTooltip('rate', rate)
+   
 
     const inputs = document.querySelector('.contenedor')
     const save = document.querySelector('#save')
